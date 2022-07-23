@@ -21,6 +21,18 @@ export default {
       month : 1,
     }
   },
+  watch : {
+    month(a) {
+      if (a >= 13) {
+        alert('13이상 입력 ㄴㄴ');
+        this.month = 1;
+      }
+      if (isNaN(a) == true) {
+        alert('문자입력 ㄴㄴ');
+        this.month = 1;
+      }
+    }
+  },
   props : {
     원룸들 : Array,
     누른거 : Number,
