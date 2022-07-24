@@ -1,8 +1,8 @@
 <template>
 
-  <div class="start" :class="{end : 모달창열렸니}" >
+  <translation name="fade">
     <Modal @closeModal="모달창열렸니 = false" :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니" />
-  </div>
+  </translation>
 
   <div class="menu">
     <a v-for="a in 메뉴들" :key="a">{{ a }}</a>
@@ -48,13 +48,26 @@ export default {
 </script>
 
 <style>
-.start {
-  opacity: 0;
-  transition: all 1s;
-}
-.end {
+.fade-leave-from {
   opacity: 1;
 }
+.fade-leave-active {
+  transition: all 1s;
+}
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-from {
+  transform: translateY(-1000px);
+}
+.fade-enter-active {
+  transition: all 1s;
+}
+.fade-enter-to {
+  transform: translateY(0px);
+}
+
 body {
   margin: 0
 }
