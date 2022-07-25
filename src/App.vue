@@ -10,6 +10,9 @@
 
   <Discount/>
 
+  <button @click="priceSort">가격순정렬</button>
+  <button @click="sortBack">되돌리기</button>
+
   <Card @openModal="모달창열렸니 = true; 누른거 = $event" :원룸="원룸들[i]" v-for="(a,i) in 원룸들" :key="a" />
   
 </template>
@@ -25,6 +28,7 @@ export default {
   name: 'App',
   data(){
     return {
+      원룸들오리지널 : [...data],
       누른거 : 0,
       원룸들 : data,
       모달창열렸니 : false,
@@ -36,7 +40,15 @@ export default {
   methods : {
     increase() {
       this.신고수 ++;
-    }
+    },
+    sortBack() {
+      this.원룸들 = [...this.원룸들오리지널];
+    }, 
+    priceSort() {
+      this.원룸들.sort(function(a, b) {
+          return a.price - b.price       
+      });
+    },
   },
 
   components: {
