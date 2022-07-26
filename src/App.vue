@@ -8,7 +8,8 @@
     <a v-for="a in 메뉴들" :key="a">{{ a }}</a>
   </div>
 
-  <Discount/>
+  <Discount v-if="showDiscount == true"/>
+  <p>지금 결제하면 {{amount}}% 할인</p>
 
   <button @click="priceSort">가격순정렬</button>
   <button @click="sortBack">되돌리기</button>
@@ -28,6 +29,8 @@ export default {
   name: 'App',
   data(){
     return {
+      amount : 30,
+      showDiscount: true,
       원룸들오리지널 : [...data],
       누른거 : 0,
       원룸들 : data,
@@ -50,6 +53,23 @@ export default {
       });
     },
   },
+
+  // 1초마다 1%씩 감소
+  mounted(){
+    setInterval(()=>{
+      if(this.amount>0){
+        this.amount--;
+      }
+    }, 1000);
+  },
+
+
+  // 2초 후 Discount 컴포넌트 사라지게 하기
+  // mounted() { 
+  //   setTimeout(()=>{
+  //     this.showDiscount = false;
+  //   }, 2000);
+  // },
 
   components: {
     Discount,

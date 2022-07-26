@@ -38,6 +38,12 @@ export default {
     누른거 : Number,
     모달창열렸니 : Boolean,
   },
+  beforeUpdate(){
+    if (this.month == 2){
+      alert('2개월은 너무 적다');
+      this.month = 3;
+    }
+  },
   methods: {
     close() {
       this.$emit('closeModal')
